@@ -8,6 +8,6 @@ router.post('/login', controller.login);
 
 
 // Роут на register
-router.post('/auth', controller.register);
+router.post('/register', controller.register);
 
 module.exports = router;
