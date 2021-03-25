@@ -10,13 +10,21 @@ module.exports.login = function(req, res){
 };
 
 // Контроллер для Auth
-module.exports.register = function (req, res) {
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password
+module.exports.register = async function (req, res) {
+
+    // Делаем проверку на наличие пользователя в БД
+    const canditate = await  User.findOne({
+        email: req.body.email
     });
 
-    user.save().then(function(){
-        console.log('Пользователь создан!!!');
-    });
+    if (canditate)
+    {
+        res.status(409).json({
+            message: "Такой Email уже существует в системе. Проверьте правильность введенных данных!"
+        });
+    } 
+    else
+    {
+        // Сохранить пользователя
+    }
 };
