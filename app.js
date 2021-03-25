@@ -14,13 +14,14 @@ const app = express();
 
 
 // Подключаемся к MongoDB
-mongoose.connect(keys.mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(keys.mongoUri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 .then(function(){
     console.log('Мы подключились к БД!!!');
 })
 .catch(function(error){
     console.log(error);
 });
+
 
 
 // Регистрируем Morgan 
