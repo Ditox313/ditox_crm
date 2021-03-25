@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth.js');
 const analyticsRoutes = require('./routes/analytics.js');
 const categoryRoutes = require('./routes/category.js');
@@ -7,8 +8,19 @@ const positionRoutes = require('./routes/position.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const keys = require('./config/keys.js');
 const app = express();
 
+
+
+// Подключаемся к MongoDB
+mongoose.connect(keys.mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(function(){
+    console.log('Мы подключились к БД!!!');
+})
+.catch(function(error){
+    console.log(error);
+});
 
 
 // Регистрируем Morgan 
