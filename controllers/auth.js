@@ -1,16 +1,61 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
 
 
 
 // Контроллер для Login
-module.exports.login = function(req, res){
-    res.status(200).json({
-        "page": "Login"
+module.exports.login = async function(req, res){
+    
+    const candidate = await User.findOne({
+        email: req.body.email
     });
+
+    console.log(candidate);
+
+    if (candidate)
+    {
+        // Проверяем на соответствие пароля
+        const passwordResult = bcrypt.compareSync(req.body.password, candidate.password);
+
+        if (passwordResult)
+        {
+            // Генерация токена(Генереруем объект с данными о пользователе и его кодируем)
+            const token = jwt.sign({
+                email: candidate.email,
+                userId: candidate._id
+            }, keys.jwt , {expiresIn: 60 * 60});
+
+            // Отправляем ответ
+            res.status(200).json({
+               token: `Bearer ${token}`
+            });
+        }
+        else
+        {
+            res.status(401).json({
+                message: "Ошибка. Пароли не совпадают. Попробуйте еще раз!"
+            });
+        }
+    }
+    else
+    {
+        res.status(404).json({
+            message: "Пользователя с таким E-mail не найдено!"
+        });
+    }
 };
 
-// Контроллер для Auth
+
+
+
+
+
+
+
+
+// Контроллер для register 
 module.exports.register = async function (req, res) {
 
     // Делаем проверку на наличие пользователя в БД
