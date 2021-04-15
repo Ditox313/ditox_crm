@@ -1,6 +1,8 @@
 // Контроллер для getAll
 module.exports.getAll = function (req, res) {
-    
+    res.status(200).json({
+        message: "Это защищенная страница всех категорий. Доступ разрешен!"
+    });
 };
 
 

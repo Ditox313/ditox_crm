@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/category.js');
+const passport = require('passport');
 
 
 // Роут на getAll
-router.get('/', controller.getAll);
+router.get('/',passport.authenticate('jwt',{session: false}), controller.getAll);
 
 
 // Роут на getById

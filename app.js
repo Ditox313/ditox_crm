@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const authRoutes = require('./routes/auth.js');
 const analyticsRoutes = require('./routes/analytics.js');
 const categoryRoutes = require('./routes/category.js');
@@ -21,6 +22,14 @@ mongoose.connect(keys.mongoUri, {useNewUrlParser: true, useUnifiedTopology: true
 .catch(function(error){
     console.log(error);
 });
+
+
+
+
+// Инициализируем passport и подключаем файл обработчик для логики защиты и проверки роутов
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
+
 
 
 
