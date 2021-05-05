@@ -13,7 +13,6 @@ module.exports.login = async function(req, res){
         email: req.body.email
     });
 
-    console.log(candidate);
 
     if (candidate)
     {

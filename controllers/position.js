@@ -1,22 +1,47 @@
-// Контроллер для getByCategoryId
-module.exports.getByCategoryId = function (req, res) {
+const { json } = require('body-parser');
+const Position = require('../models/Position');
+const errorHandler = require('../Utils/errorHendler');
 
+// Контроллер для getByCategoryId(Получение всех позиций по Id категории)
+module.exports.getByCategoryId = async function (req, res) {
+    try {
+        const positions = await Position.find({
+            category: req.params.categoryId,
+            user: req.user.id
+        });
+
+        res.status(200), json(positions);
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };
 
 
 // Контроллер для remove
 module.exports.remove = function (req, res) {
+    try {
 
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };
 
 
 // Контроллер для create
 module.exports.create = function (req, res) {
+    try {
 
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };
 
 
 // Контроллер для update
 module.exports.update = function (req, res) {
-
+    try {
+        
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };
