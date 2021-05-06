@@ -52,7 +52,7 @@ module.exports.remove = async function (req, res) {
 };
 
 
-// Контроллер для create
+// Контроллер для create(создаем категорию)
 module.exports.create = function (req, res) {
     try {
 
