@@ -4,10 +4,10 @@ const controller = require('../controllers/order.js');
 
 
 // Роут на getAll
-router.get('/', controller.getAll);
+router.get('/', passport.authenticate('jwt',{session: false}), controller.getAll);
 
 
 // Роут на create
-router.post('/', controller.create);
+router.post('/', passport.authenticate('jwt',{session: false}), controller.create);
 
 module.exports = router;
