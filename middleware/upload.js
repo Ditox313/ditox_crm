@@ -13,28 +13,26 @@ const moment = require('moment');
 
 // Создаем переменную storage. Она описывает как будут хранится и где будут хранится загруженный файлы. 
 const storage = multer.diskStorage({
-    // Куда сохраняем файл
-    destination(req,file,callback){
-        callback(null, '/uploads');
+    destination(req,file,cb){
+        cb(null, 'uploads/');
     },
-    // С каким именем сохраняем
-    filename(req, file, callback) {
+    filename(req, file, cb) {
         const date = moment().format('DDMMYYYY-HHmmss_SS') ;
-        callback(null, `${date}-${file.originalname}`);
+        cb(null, `${date}-${file.originalname}`);
     }
 });
 
 
 
 // Валидатор
-const fileFilter = function (req, file, callback) {
+const fileFilter = function (req, file, cb) {
     if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg')
     {
-         callback(null, true);
+         cb(null, true);
     }
     else
     {
-        callback(null, false);
+        cb(null, false);
     }
 };
 

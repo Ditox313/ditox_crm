@@ -36,6 +36,10 @@ require('./middleware/passport')(passport);
 // Регистрируем Morgan 
 app.use(morgan('dev'));
 
+
+// Добавляем возможность отдавать с сервера картинки по запросу. (Когда будет запрос к uploads, делай эту папку статической)
+app.use('/uploads', express.static('uploads'));
+
 // Регистрируем Cors
 app.use(cors());
 

@@ -53,9 +53,19 @@ module.exports.remove = async function (req, res) {
 
 
 // Контроллер для create(создаем категорию)
-module.exports.create = function (req, res) {
+module.exports.create = async function (req, res) {
     try {
+        console.log(req.file);
+        const category = new Category({
+            name: req.body.name,
+            user: req.user.id,
+            imageSrc: req.file ? req.file.path : '' //Если файл загружен то задаем путь до файла
+        });
 
+        await category.save(); //Сохраняем созданную категорию
+
+        res.status(201).json(category);
+        
     } catch (e) {
         errorHandler(res, e);
     }
@@ -63,9 +73,26 @@ module.exports.create = function (req, res) {
 
 
 // Контроллер для update
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
     try {
+        const updated = {
+            name: req.body.name,
+        };
 
+        // Если объект file есть,то заполняем параметр путем фала
+        if(file)
+        {
+            updated.imageSrc = req.file.path;
+        }
+        
+
+        const category = await Category.findOneAndUpdate(
+            {_id: req.params.id,}, //Ищем по id
+            {$set: updated}, //Обновлять мы будем body запроса. В updated находятся данные на которые будем менять старые
+            {new: true} //обновит позицию и верет нам уже обновленную
+        );
+
+        res.status(200).json(category);
     } catch (e) {
         errorHandler(res, e);
     }
