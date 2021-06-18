@@ -47,6 +47,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.form.disable();
+    
     const user = {
       email: this.form.value.email,
       password:  this.form.value.password
