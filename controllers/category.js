@@ -17,6 +17,8 @@ module.exports.getAll = async function (req, res) {
     } catch (e) {
         errorHandler(res, e);
     }
+
+    
 };
 
 
@@ -38,13 +40,13 @@ module.exports.remove = async function (req, res) {
             _id: req.params.id //Удаляем категорию по id
         });
 
-        await Category.remove({
+        await Position.remove({
             category: req.params.id //Удаляем позиции из этой категории
         });
 
         // Возвращаем результат
         res.status(200).json({
-            message: "Категория удалена"
+            message: "Категория и позиции данной категории удалены"
         });
     } catch (e) {
         errorHandler(res, e);
@@ -55,7 +57,7 @@ module.exports.remove = async function (req, res) {
 // Контроллер для create(создаем категорию)
 module.exports.create = async function (req, res) {
     try {
-        console.log(req.file);
+
         const category = new Category({
             name: req.body.name,
             user: req.user.id,

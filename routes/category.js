@@ -23,7 +23,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), upload.single('
 
 
 // Роут на update
-router.patch('/:id', upload.single('image'), controller.update);
+router.patch('/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update);
 
 
 
