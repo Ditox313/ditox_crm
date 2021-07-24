@@ -7,16 +7,17 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 
 
-// Роуты делим на layouts
+// Массив наших роутов. Роуты делим на layouts
 const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
       {
+        // Устанавливаем дефолтный роут, когда попадаем на страницу layout.
         path: '',
         redirectTo: '/login',
-        pathMatch: 'full' //Выполняем редирект в случае полного совпадения загружаем компонент login
+        pathMatch: 'full' 
       },
       {
         path: 'login',
@@ -40,9 +41,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  // Импортируем модуль для регистрации наших роутов
   imports: [
     RouterModule.forRoot(routes)
   ],
+  // Возвращаем модуль уже сконфигурированный с зарегистрированными роутами
   exports: [
     RouterModule
   ]
