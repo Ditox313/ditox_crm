@@ -7,6 +7,7 @@ declare var M: {
      toast: (arg0: { html: string; }) => void; 
      FloatingActionButton: any
      init: (arg0: { html: ElementRef; }) => void; 
+     updateTextFields: any
     };
 
 
@@ -26,6 +27,14 @@ export class MaterialService
     static initializeFloatingButton(ref: ElementRef)
     {
        M.FloatingActionButton.init(ref.nativeElement)
+    }
+
+    
+
+    // Обновляем текстовые инпуты
+    static updateTextInputs()
+    {
+        M.updateTextFields();
     }
 }
 

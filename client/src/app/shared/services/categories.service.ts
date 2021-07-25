@@ -21,4 +21,13 @@ export class CategoriesService
     {
        return this.http.get<Category []>('/api/category');
     }
+
+
+
+
+   //  Получаем категорию по id. Передаем id для бэкэнд роута
+   getById(id: string): Observable<Category>
+   {
+      return this.http.get<Category>(`api/category/${id}`);
+   }
 }
