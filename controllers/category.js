@@ -11,7 +11,7 @@ const errorHandler = require('../Utils/errorHendler');
 module.exports.getAll = async function (req, res) {
     try {
         const categories = await Category.find({
-            user: req.user.id //Ищем категории по пользователю который их создал
+            //user: req.user.id //Ищем категории по пользователю который их создал
         });
         res.status(200).json(categories);
     } catch (e) {
