@@ -11,11 +11,17 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
-  uSub!: Subscription;
+  
+  form!: FormGroup; //Инициализируем нашу форму
+  uSub!: Subscription; //Создаем переменную, в которую помещаем наш стим, что бы потом отписаться от него
 
+
+
+  // Инжектируем необходимые сервисы в класс для их послдующего использования
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
 
+
+  // Инициализируем форму. Говорим какие инпуты будут
   ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -24,6 +30,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   }
 
 
+  // Отписываемся от стрима, что бы не было утечки памяти
   ngOnDestroy(){
     if(this.uSub)
     {
@@ -33,14 +40,18 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
 
 
+  // Обрабатываем отправку формы
   onSubmit(): void {
     this.form.disable();
     
+
+    // Создаем юзера(кандидата)
     const user = {
       email: this.form.value.email,
       password:  this.form.value.password
     }
 
+    // Выполняме метод auth.register из сервиса auth.service и в случае успеха делаем редирект на логин и обрабатываем ошибку
     this.uSub = this.auth.register(user).subscribe(
       () => this.router.navigate(['/login'], {
         queryParams: {

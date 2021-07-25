@@ -14,8 +14,8 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
-        // Устанавливаем дефолтный роут, когда попадаем на страницу layout.
-        path: '',
+        
+        path: '',  // Устанавливаем дефолтный роут, когда попадаем на страницу layout.
         redirectTo: '/login',
         pathMatch: 'full' 
       },
@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: '',
     component: SiteLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], //Защищаем роуты которые относяца к самому приложению
     children: [
       
     ]
@@ -41,13 +41,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  // Импортируем модуль для регистрации наших роутов
+  
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes)  // Импортируем модуль для регистрации наших роутов
   ],
-  // Возвращаем модуль уже сконфигурированный с зарегистрированными роутами
+  
   exports: [
-    RouterModule
+    RouterModule    // Возвращаем модуль уже сконфигурированный с зарегистрированными роутами
   ]
 })
 export class AppRoutingModule { }

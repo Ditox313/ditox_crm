@@ -1,3 +1,5 @@
+// Интерфейсы
+
 export interface User
 {
     email: string,
