@@ -30,4 +30,53 @@ export class CategoriesService
    {
       return this.http.get<Category>(`api/category/${id}`);
    }
+
+
+
+
+   // Создаем категрию
+   create(name: string, image?: File): Observable<Category>
+   {
+      // Формируем объект для отправки на сервер
+      const fd = new FormData();
+
+      // Добавляем в formdata картинку , если она есть
+      if(image)
+      {
+         fd.append('image', image, image.name);
+      }
+
+      // Добавляем в formdata имя категории
+       fd.append('name', name);
+
+
+
+      return this.http.post<Category>('/api/category', fd);
+   }
+
+
+
+
+
+   // Обновляем  категорию
+   update(id:string, name: string, image?: File): Observable<Category>
+   {
+      // Формируем объект для отправки на сервер
+      const fd = new FormData();
+
+      // Добавляем в formdata картинку , если она есть
+      if(image)
+      {
+         fd.append('image', image, image.name);
+      }
+
+      // Добавляем в formdata имя категории
+       fd.append('name', name);
+
+       
+
+
+      //  Делаем запрос с передачей id
+      return this.http.patch<Category>(`/api/category/${id}`, fd);
+   }
 }

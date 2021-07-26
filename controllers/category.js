@@ -81,10 +81,12 @@ module.exports.update = async function (req, res) {
             name: req.body.name,
         };
 
+
         // Если объект file есть,то заполняем параметр путем фала
-        if(file)
+        if(req.file)
         {
             updated.imageSrc = req.file.path;
+            
         }
         
 
@@ -93,6 +95,8 @@ module.exports.update = async function (req, res) {
             {$set: updated}, //Обновлять мы будем body запроса. В updated находятся данные на которые будем менять старые
             {new: true} //обновит позицию и верет нам уже обновленную
         );
+
+
 
         res.status(200).json(category);
     } catch (e) {

@@ -3,3 +3,15 @@
 
 /* Стили верстки */
 @import "theme/styles/styles.min.css";
+
+
+/* Кастомный код */
+.dn
+{
+    display: none;
+}
+
+.h200
+{
+    height: 200px;
+}
