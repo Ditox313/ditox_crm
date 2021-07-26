@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Category } from './../interfaces';
+import { Category, Message } from './../interfaces';
 // Сервис для работы с категориями
 
 import { HttpClient } from "@angular/common/http";
@@ -78,5 +78,14 @@ export class CategoriesService
 
       //  Делаем запрос с передачей id
       return this.http.patch<Category>(`/api/category/${id}`, fd);
+   }
+
+
+
+
+   // Удаление категории
+   delete(id: any): Observable<Message>
+   {
+      return this.http.delete<Message>(`/api/category/${id}`);
    }
 }

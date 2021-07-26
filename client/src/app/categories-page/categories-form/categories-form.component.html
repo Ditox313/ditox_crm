@@ -12,7 +12,7 @@
         </ng-template>
     </h4>
     <span>
-        <button class="btn btn-small red">
+        <button class="btn btn-small red" (click)="deleteCat()" *ngIf="category">
             <i class="material-icons">delete</i>
         </button>
     </span>

@@ -1,3 +1,4 @@
+
 // Интерфейсы
 
 
@@ -16,4 +17,12 @@ export interface Category
     imageSrc?: string
     user?: string,
     _id?: string
+}
+
+
+
+//Интерфейс для сообщения
+export interface Message
+{
+    message: string
 }

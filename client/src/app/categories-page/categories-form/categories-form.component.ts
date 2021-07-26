@@ -1,6 +1,6 @@
 import { Category } from './../../shared/interfaces';
 import { CategoriesService } from './../../shared/services/categories.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
@@ -45,7 +45,7 @@ export class CategoriesFormComponent implements OnInit {
 
 
   // Инжектируем сервис активного роута
-  constructor(private route: ActivatedRoute, private CategoriesService: CategoriesService) { }
+  constructor(private route: ActivatedRoute, private CategoriesService: CategoriesService, private router: Router) { }
 
 
 
@@ -178,6 +178,27 @@ export class CategoriesFormComponent implements OnInit {
       reader.readAsDataURL(file);
 
     
+  }
+
+
+
+  // Удаляем категорию
+  deleteCat()
+  {
+    // Спросим пользователя уверен ли он в удалении
+    const decision = window.confirm(`Вы уверены , что хотите удалить категорию "${this.category.name}"`);
+
+    if(decision)
+    {
+      // Запускаем метод удаления
+      this.CategoriesService.delete(this.category._id).subscribe(
+        responce => {
+          MaterialService.toast(responce.message); 
+          this.router.navigate(['/categories']);
+        },
+        error => {MaterialService.toast(error.error.message)},
+      );
+    }
   }
 
 }
