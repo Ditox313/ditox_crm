@@ -1,19 +1,24 @@
+import { ElementRef } from '@angular/core';
+import { MaterialInstance } from '../interfaces';
 // Сервис для работы с materialyze.css
 
-import { ElementRef } from "@angular/core";
 
 // Декларируем переменную "m" и необходимые свойста и методы, что бы избежать ошибок
 declare var M: {
      toast: (arg0: { html: string; }) => void; 
      FloatingActionButton: any
      init: (arg0: { html: ElementRef; }) => void; 
-     updateTextFields: any
+     updateTextFields: any;
+     Modal: any
     };
 
 
 
 export class MaterialService
 {
+    static initModal() {
+      throw new Error('Method not implemented.');
+    }
     static toast(message: string)
     {
         // Метод описан в документации js фреймворка materialyze
@@ -35,6 +40,14 @@ export class MaterialService
     static updateTextInputs()
     {
         M.updateTextFields();
+    }
+
+
+
+    // Инициализируем модальное окно
+    static initModalPos(ref: ElementRef): MaterialInstance
+    {
+        return M.Modal.init(ref.nativeElement);
     }
 }
 

@@ -1,7 +1,8 @@
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 const controller = require('../controllers/auth.js');
+const passport = require('passport');
+
 
 
 // Роут на login

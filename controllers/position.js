@@ -12,7 +12,7 @@ module.exports.getByCategoryId = async function (req, res) {
         // Ищем в таблице позиции по 2 параметрам
         const positions = await Position.find({
             category: req.params.categoryId,
-            user: req.user.id  //Эти данные берем из объекта user который добавил пасспорт в запрос
+            // user: req.user.id  //Эти данные берем из объекта user который добавил пасспорт в запрос
         });
 
         // Возвращаем пользователю позиции 

@@ -9,6 +9,7 @@ const errorHandler = require('../Utils/errorHendler');
 // Контроллер для Login
 module.exports.login = async function(req, res){
     
+    
     const candidate = await User.findOne({
         email: req.body.email
     });
@@ -22,10 +23,14 @@ module.exports.login = async function(req, res){
         if (passwordResult)
         {
             // Генерация токена(Генереруем объект с данными о пользователе и его кодируем)
-            const token = jwt.sign({
-                email: candidate.email,
-                userId: candidate._id
-            }, keys.jwt , {expiresIn: 60 * 60});
+            const token = jwt.sign(
+                {
+                    email: candidate.email,
+                    userId: candidate._id
+                },
+                keys.jwt , 
+                {expiresIn: 60 * 60}
+            );
 
             // Отправляем ответ
             res.status(200).json({

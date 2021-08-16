@@ -12,6 +12,8 @@ import { tap } from 'rxjs/operators';
 @Injectable({
    providedIn: 'root' //Автоматичеки регистриует сервис в главном модуле
 })
+
+
 export class AuthService
 {
 

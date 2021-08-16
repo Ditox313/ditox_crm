@@ -59,4 +59,5 @@
 
 
 <!-- Вставляем шаблон с позициями -->
-<!-- <app-positions-form></app-positions-form> -->
+<!-- Выводим компонент ,если у категории к=есть id -->
+<app-positions-form [categoryId]="category._id" *ngIf="category?._id"></app-positions-form>

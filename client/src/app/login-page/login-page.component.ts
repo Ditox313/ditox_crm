@@ -16,10 +16,14 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   uSub!: Subscription; //Создаем переменную, в которую помещаем наш стим, что бы потом отписаться от него
 
 
-  // Инжектируем необходимые сервисы в класс для их послдующего использования
+  // Инжектируем необходимые сервисы в класс для их последующего использования
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
 
+
+
+
   ngOnInit(): void {
+    // Описываем элементы которые есть в форме(контролы)
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),

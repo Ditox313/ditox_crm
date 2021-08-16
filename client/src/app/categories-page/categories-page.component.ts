@@ -10,6 +10,9 @@ import { MaterialService } from '../shared/classes/material.service';
 })
 export class CategoriesPageComponent implements OnInit {
 
+
+   // Инжектим сервис категорий
+  constructor(private categoriesService: CategoriesService) { }
   
 
 
@@ -19,8 +22,6 @@ export class CategoriesPageComponent implements OnInit {
   // Создаем переменную для полученных категорий с сервера
   categories: Category[] = [];
 
-  // Инжектим сервис категорий
-  constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -29,7 +30,7 @@ export class CategoriesPageComponent implements OnInit {
       this.categories = categories;
       this.loading = false;
 
-      console.log('Категория', categories);
+      // console.log('Категория', categories);
     });
   }
 

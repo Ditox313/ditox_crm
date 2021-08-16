@@ -11,6 +11,8 @@ import { Injectable } from "@angular/core";
 @Injectable({
    providedIn: 'root' //Автоматичеки регистриует сервис в главном модуле
 })
+
+
 export class CategoriesService
 {
     constructor(private http: HttpClient){}
@@ -34,7 +36,7 @@ export class CategoriesService
 
 
 
-   // Создаем категрию
+   // Создаем категорию
    create(name: string, image?: File): Observable<Category>
    {
       // Формируем объект для отправки на сервер

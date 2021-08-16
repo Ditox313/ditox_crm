@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate, CanActivateChild
         // Проверяем есть ли у пользователя токен(то есть зареган ли он)
         if(this.auth.isAuthenticated())
         {
-            return of(true); //Обернули ответ trut в ответ в виде стрима
+            return of(true); //Обернули ответ true в ответ в виде стрима
         }
         else
         {
