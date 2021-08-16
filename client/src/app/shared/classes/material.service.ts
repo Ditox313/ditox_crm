@@ -16,9 +16,13 @@ declare var M: {
 
 export class MaterialService
 {
-    static initModal() {
-      throw new Error('Method not implemented.');
-    }
+
+    
+    // static initModal() {
+    //   throw new Error('Method not implemented.');
+    // }
+
+    
     static toast(message: string)
     {
         // Метод описан в документации js фреймворка materialyze

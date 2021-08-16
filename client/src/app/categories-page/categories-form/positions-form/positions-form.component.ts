@@ -44,8 +44,9 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
 
-
   ngOnInit(): void {
+
+
     // Инициализируем форму
     this.form  = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -59,19 +60,20 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
     // Получаем список всех позиций
-
     this.positionsService.fetch(this.categoryId).subscribe((positions) =>{
       this.positions = positions;
     });
 
     // Выключаем лоадер
     this.loading = false;
+
+
   }
 
 
 
 
-
+  // Срабатывает когда загрузится контент
   ngAfterViewInit(): void
   {
     this.modal =  MaterialService.initModalPos(this.modalRef)
@@ -80,10 +82,14 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
 
+  // Срабатывает при удалении компонента
   ngOnDestroy(): void
   {
     this.modal.destroy();
   }
+
+
+
 
 
   // Редактируем выбранную позицию
@@ -98,6 +104,9 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     this.modal.open();
     MaterialService.updateTextInputs();
   }
+
+
+
 
 
 
@@ -117,6 +126,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
 
+  // Отмена модального окна при клике на кнопку отметы в модальном окне
   onCancel():void
   {
     this.modal.close();
@@ -124,6 +134,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
 
+  // Удалить позицию
   onDeletePosition(event: Event, position: Position): void
   {
     event.stopPropagation();
@@ -148,21 +159,26 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   {
     this.form.disable();
 
+
+    // Создаем новую позицию. Берем данные из формы
     const newPosition: Position | any = {
       name: this.form.value.name,
       cost: this.form.value.cost,
       category: this.categoryId
     };
 
-    if(this.positionId)
-    {
+
+
+    // Если есть id , значит мы редактируем позицию
+    if (this.positionId) {
       newPosition._id = this.positionId;
-      
 
       this.positionsService.update(newPosition).subscribe(
         (position) => {
           MaterialService.toast('Изменения сохранены');
-          const idxPos = this.positions.findIndex(pos => pos._id === position._id);
+          const idxPos = this.positions.findIndex(
+            (pos) => pos._id === position._id
+          );
           this.positions[idxPos] = position;
         },
         (error) => {
@@ -179,9 +195,8 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       );
     }
-    else
-    {
-
+    // Иначе мы добавляем новую позицию
+    else {
       this.positionsService.create(newPosition).subscribe(
         (position) => {
           MaterialService.toast('Позиция создана');
@@ -201,8 +216,5 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       );
     }
-
-    
   }
-
 }
