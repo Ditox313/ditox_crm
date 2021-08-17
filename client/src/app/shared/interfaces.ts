@@ -1,3 +1,4 @@
+import { OrderService } from './services/order.service';
 
 // Интерфейсы
 
@@ -36,7 +37,8 @@ export interface Position
     cost: string,
     category: string,
     user?: string,
-    _id?: string 
+    _id?: string ,
+    quantity?: number
 }
 
 
@@ -47,4 +49,27 @@ export interface MaterialInstance
     open?(): void
     close?(): void
     destroy?(): void
+}
+
+
+
+
+// Интерфейс для общего заказа
+export interface Order {
+  date?: Date;
+  order?: number;
+  user?: string;
+  list: OrderPosition[];
+  _id?: string;
+}
+
+
+
+// Интерфейс для позиции заказа
+export interface OrderPosition
+{
+    name: string,
+    cost: number,
+    quantity: number,
+    _id?: string
 }

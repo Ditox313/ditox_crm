@@ -1,3 +1,5 @@
+import { OrderPositionsComponent } from './order-page/order-positions/order-positions.component';
+import { OrderCategoriesComponent } from './order-page/order-categories/order-categories.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
@@ -20,10 +22,9 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
-        
-        path: '',  // Устанавливаем дефолтный роут, когда попадаем на страницу layout.
+        path: '', // Устанавливаем дефолтный роут, когда попадаем на страницу layout.
         redirectTo: '/login',
-        pathMatch: 'full' 
+        pathMatch: 'full',
       },
       {
         path: 'login',
@@ -32,9 +33,8 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterPageComponent,
-      }
-      
-    ]
+      },
+    ],
   },
   {
     path: '',
@@ -47,29 +47,33 @@ const routes: Routes = [
       },
       {
         path: 'analytics',
-        component: AnalyticsPageComponent
+        component: AnalyticsPageComponent,
       },
       {
         path: 'history',
-        component: HistoryPageComponent
+        component: HistoryPageComponent,
       },
       {
         path: 'order',
-        component: OrderPageComponent
+        component: OrderPageComponent,
+        children: [
+          { path: '', component: OrderCategoriesComponent },
+          { path: ':id', component: OrderPositionsComponent }
+        ],
       },
       {
         path: 'categories',
-        component: CategoriesPageComponent
+        component: CategoriesPageComponent,
       },
       {
         path: 'categories/new',
-        component: CategoriesFormComponent
+        component: CategoriesFormComponent,
       },
       {
         path: 'categories/:id', //Если переходим на конкретную категорию то подгружаеи так же шаблон CategoriesForm
-        component: CategoriesFormComponent
+        component: CategoriesFormComponent,
       },
-    ]
+    ],
   },
 ];
 
