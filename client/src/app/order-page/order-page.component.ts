@@ -15,7 +15,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
   isRoot!: Boolean;
 
   // Получаем ноду модального окна
-  @ViewChild('modal') modalRef!: ElementRef;
+  @ViewChild('modal') modalRef: ElementRef | any;
 
   // Переменная для модальной формы
   modal: MaterialInstance | any;

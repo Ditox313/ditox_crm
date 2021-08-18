@@ -51,7 +51,7 @@ export class MaterialService
     // Инициализируем модальное окно
     static initModalPos(ref: ElementRef): MaterialInstance
     {
-        return M.Modal.init(ref.nativeElement);
+        return M.Modal.init(ref.nativeElement); 
     }
 }
 
