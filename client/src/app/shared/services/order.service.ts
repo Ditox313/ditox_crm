@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Order, OrderPosition, Position } from 'src/app/shared/interfaces';
 import { Injectable } from '@angular/core';
@@ -105,5 +105,16 @@ export class OrderService {
     return this.http.post<Order>('/api/order', order);
     
     
+  }
+
+
+
+  // Получаем список всех заказов
+  fetch(params: any = {}): Observable<Order[]>{
+    return this.http.get<Order[]>('/api/order', {
+      params: new HttpParams({
+        fromObject: params
+      })
+    });
   }
 }
