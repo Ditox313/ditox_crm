@@ -9,7 +9,7 @@ const errorHandler = require('../Utils/errorHendler');
 // Контроллер для getByCategoryId(Получение всех позиций по Id категории)
 module.exports.getByCategoryId = async function (req, res) {
     try {
-        // Ищем в таблице позиции по 2 параметрам
+        // Ищем в таблице позиции по 2 параметрам( по дефолту 1 параметр)
         const positions = await Position.find({
             category: req.params.categoryId,
             // user: req.user.id  //Эти данные берем из объекта user который добавил пасспорт в запрос

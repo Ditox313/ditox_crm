@@ -87,4 +87,7 @@ const routes: Routes = [
     RouterModule    // Возвращаем модуль уже сконфигурированный с зарегистрированными роутами
   ]
 })
+
+
+
 export class AppRoutingModule { }

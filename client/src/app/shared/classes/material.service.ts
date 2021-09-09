@@ -1,4 +1,4 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef, OnInit } from '@angular/core';
 import { MaterialInstance } from '../interfaces';
 // Сервис для работы с materialyze.css
 
@@ -9,7 +9,8 @@ declare var M: {
      FloatingActionButton: any
      init: (arg0: { html: ElementRef; }) => void; 
      updateTextFields: any;
-     Modal: any
+     Modal: any,
+     Tooltip: any
     };
 
 
@@ -52,6 +53,15 @@ export class MaterialService
     static initModalPos(ref: ElementRef): MaterialInstance
     {
         return M.Modal.init(ref.nativeElement); 
+    }
+
+
+
+
+    // Инициализируем тултип
+    static initToolpip(ref:ElementRef): MaterialInstance
+    {
+        return M.Tooltip.init(ref.nativeElement);
     }
 }
 

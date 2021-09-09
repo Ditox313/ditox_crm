@@ -28,7 +28,7 @@ export class AuthService
    login(user: User) : Observable<{ token : string }> //Возвращаем резульат стрима(Ответ), из которого вернется token типа string
    {
       return this.http.post<{ token : string }>('/api/auth/login', user).pipe(  //Делаем ajax на нужный бэкэнд роут. Отдаем user
-         tap(({token})=> { //Сохраням токем в переменную
+         tap(({token})=> { //Сохраням токен в переменную
             localStorage.setItem('auth-token', token);//Добавляем токен в localStorage
             this.setToken(token);
          })

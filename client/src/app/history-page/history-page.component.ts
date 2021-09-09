@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { MaterialService } from 'src/app/shared/classes/material.service';
+import { MaterialInstance } from './../shared/interfaces';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-history-page',
   templateUrl: './history-page.component.html',
-  styleUrls: ['./history-page.component.css']
+  styleUrls: ['./history-page.component.css'],
 })
-export class HistoryPageComponent implements OnInit {
+export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
+  // Флаг для фильтра
+  isFilterVisible: Boolean | any;
 
-  constructor() { }
+  // Получаем тултип
+  @ViewChild('tooltip') tooltipRef: ElementRef | any;
 
-  ngOnInit(): void {
+  tooltip: MaterialInstance | any;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngOnDestroy() {
+    this.tooltip.destroy();
   }
 
+  ngAfterViewInit(){
+    this.tooltip = MaterialService.initToolpip(this.tooltipRef);
+  }
 }

@@ -15,7 +15,7 @@ module.exports.getAll = async function (req, res) {
         
         // Создаем объект запроса
         const query = {
-            user: req.user.id //Покажем заказы только тому юзеру, который запросил данный роут
+            user: req.user.id 
         }
 
 

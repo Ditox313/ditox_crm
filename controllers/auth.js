@@ -93,4 +93,6 @@ module.exports.register = async function (req, res) {
             errorHandler(res, error);
         }
     }
+
+    
 };
