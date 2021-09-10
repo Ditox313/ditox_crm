@@ -5,13 +5,14 @@ import { MaterialInstance } from '../interfaces';
 
 // Декларируем переменную "m" и необходимые свойста и методы, что бы избежать ошибок
 declare var M: {
-     toast: (arg0: { html: string; }) => void; 
-     FloatingActionButton: any
-     init: (arg0: { html: ElementRef; }) => void; 
-     updateTextFields: any;
-     Modal: any,
-     Tooltip: any
-    };
+  toast: (arg0: { html: string }) => void;
+  FloatingActionButton: any;
+  init: (arg0: { html: ElementRef }) => void;
+  updateTextFields: any;
+  Modal: any;
+  Tooltip: any;
+  Datepicker: any
+};
 
 
 
@@ -63,6 +64,18 @@ export class MaterialService
     {
         return M.Tooltip.init(ref.nativeElement);
     }
+
+
+    // Инициализируем датепикеры
+    static initDatepicker(ref:ElementRef, onClose: () => void){
+        return M.Datepicker.init(ref.nativeElement,{
+            format: 'dd.mm.yyyy',
+            showClearBtn: true,
+            onClose
+        });
+    }
+
+    
 }
 
 

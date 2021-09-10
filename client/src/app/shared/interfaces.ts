@@ -1,3 +1,5 @@
+
+import { HistoryFilterComponent } from './../history-page/history-filter/history-filter.component';
 import { OrderService } from './services/order.service';
 
 // Интерфейсы
@@ -72,4 +74,22 @@ export interface OrderPosition
     cost: number,
     quantity: number,
     _id?: string
+}
+
+
+
+// Интерфейс для фильтра
+export interface Filter
+{
+    start?:Date,
+    end?: Date,
+    order?: Number
+}
+
+
+
+
+// Интерфейс для датепикера
+export interface MaterialDatepicker extends MaterialInstance {
+  date?: Date;
 }

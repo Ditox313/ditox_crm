@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { OrderService } from './../shared/services/order.service';
 import { MaterialService } from 'src/app/shared/classes/material.service';
-import { MaterialInstance, Order } from './../shared/interfaces';
+import { Filter, MaterialInstance, Order } from './../shared/interfaces';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 
 
@@ -27,8 +27,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   aSub: Subscription | any;
 
   // Для хранения все заказов
-  orders: Order[]  = [];
-
+  orders: Order[] = [];
 
   // Флаг для лодера
   loading: boolean | any = false;
@@ -36,13 +35,15 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   // Флаг для лодера страницы
   reloading: boolean | any = false;
 
-
   // Что бы убрать кнопку загрузки бесконечного скролла когда все элементы загружены
   noMoreOrders: boolean | any = false;
 
   // Переменные с отступом и лимитов для бесконечного скролла
   offset: any = 0;
   limit: any = STEP;
+
+  // Храним филтер
+  filter: Filter = {};
 
   constructor(private orderService: OrderService) {}
 
@@ -53,14 +54,14 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Получаем все заказы
   private fetch() {
-    const params = {
+    const params = Object.assign({}, this.filter, {
       offset: this.offset,
       limit: this.limit,
-    };
+    });
 
     this.aSub = this.orderService.fetch(params).subscribe((orders) => {
       this.orders = this.orders.concat(orders);
-      this.noMoreOrders = orders.length < STEP
+      this.noMoreOrders = orders.length < STEP;
       this.loading = false;
       this.reloading = false;
     });
@@ -75,11 +76,27 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.tooltip = MaterialService.initToolpip(this.tooltipRef);
   }
 
-
   // Метод для бесконечного скролла
-  loadMore(){
+  loadMore() {
     this.offset += STEP;
     this.fetch();
     this.loading = true;
+  }
+
+  // Применить фильтр
+  applyFilter(filter: Filter) {
+    this.orders = [];
+    this.offset = 0;
+    this.filter = filter;
+    this.reloading = true;
+    this.fetch();
+  }
+
+
+
+  // Отображаем кнопку фильтра когда в фильтре что от есть
+  isFiltered(): boolean
+  {
+    return Object.keys(this.filter).length !== 0
   }
 }
