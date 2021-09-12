@@ -73,7 +73,7 @@ module.exports.create = async function (req, res) {
      try {
         // Ищем номер последнего заказа
         const lastOrder = await Order.findOne({
-            user: req.user.id
+            // user: req.user.id
         })
         .sort({date: -1});
 
