@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } fr
 
 
 // Константа для шага бесконечного скролла
-const STEP = 5;
+const STEP = 7;
 
 @Component({
   selector: 'app-history-page',
