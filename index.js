@@ -1,5 +1,8 @@
 // Подключаем ядро приложееия
 const app = require('./app.js');
+
+
+// Задаем значение порта
 const port = process.env.port || 5000;
 
 
