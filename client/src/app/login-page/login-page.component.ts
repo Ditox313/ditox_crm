@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // Описываем элементы которые есть в форме(контролы)
+    // Описываем элементы которые есть в форме(контролы). То есть инициализируем форму
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
