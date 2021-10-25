@@ -1,3 +1,4 @@
+import { AnalyticsPageComponent } from './../analytics-page/analytics-page.component';
 
 import { HistoryFilterComponent } from './../history-page/history-filter/history-filter.component';
 import { OrderService } from './services/order.service';
@@ -109,4 +110,23 @@ export interface OverviewPageItem
     compare: number,
     yesterday: number,
     isHigher: boolean
+}
+
+
+
+
+
+
+// Интерфейс для аналитики
+export interface AnalyticsPage {
+  average: number;
+  chart: AnalyticsChartItem[];
+}
+
+
+export interface AnalyticsChartItem
+{
+    gein: number,
+    order: number,
+    label: string
 }

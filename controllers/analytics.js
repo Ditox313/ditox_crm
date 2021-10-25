@@ -6,7 +6,7 @@ const moment = require("moment");
 module.exports.overview = async function (req, res) {
   try {
     // Получаем список всех заказов
-    const allOrders = await Order.find({});
+    const allOrders = await Order.find({}).sort({date: 1});
 
     // Считаем колличество всех заказов
     const totalOrdersNumber = Object.keys(allOrders).length;
@@ -103,16 +103,16 @@ module.exports.analytics = async function (req, res) {
      const ordersMap = getOrdersMap(allOrders);
 
      // Высчитываем средний чек
-     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
+     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(0);
 
 
      // Формируем ось х
-     const chart = Object(keys).map((label) => {
-      const gein = calculatePrice(ordersMap[label]);
-      const order = ordersMap[label].length;
+     const chart = Object.keys(ordersMap).map(label => {
 
+       const gein = calculatePrice(ordersMap[label]);
+       const order = ordersMap[label].length;
 
-      return {label, gein, order}
+       return { label, gein, order };
      });
 
 
@@ -120,11 +120,12 @@ module.exports.analytics = async function (req, res) {
 
      // Отдаем ответ с сервера
      res.status(200).json({
-       average: average,
-       chart: chart,
-
-
+        average: average,
+        chart: chart,
      });
+
+
+
    } catch (error) {
      errorHandler(res, error);
    }

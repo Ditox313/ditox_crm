@@ -1,4 +1,4 @@
-import { OverviewPage } from './../interfaces';
+import { AnalyticsPage, OverviewPage } from './../interfaces';
 import { Observable } from 'rxjs';
 // Сервис авторизации
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +18,8 @@ export class AnalyticsService {
     return this.http.get<OverviewPage>('/api/analytics/overview');
   }
 
-  getAnalytics() {}
-
+  // Получаем данные для аналитики
+  getAnalytics(): Observable<AnalyticsPage> {
+    return this.http.get<AnalyticsPage>('/api/analytics/analytics');
+  }
 }
