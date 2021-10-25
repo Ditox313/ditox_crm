@@ -87,10 +87,56 @@ module.exports.overview = async function (req, res) {
   }
 };
 
+
+
+
+
+
+
 // Контроллер для analytics
-module.exports.analytics = function (req, res) {
-  console.log("analytics");
+module.exports.analytics = async function (req, res) {
+   try {
+     // Находим все заказы
+     const allOrders = await Order.find({}).sort({ date: 1 });
+
+     // Создаем карту заказов
+     const ordersMap = getOrdersMap(allOrders);
+
+     // Высчитываем средний чек
+     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
+
+
+     // Формируем ось х
+     const chart = Object(keys).map((label) => {
+      const gein = calculatePrice(ordersMap[label]);
+      const order = ordersMap[label].length;
+
+
+      return {label, gein, order}
+     });
+
+
+
+
+     // Отдаем ответ с сервера
+     res.status(200).json({
+       average: average,
+       chart: chart,
+
+
+     });
+   } catch (error) {
+     errorHandler(res, error);
+   }
 };
+
+
+
+
+
+
+
+
 
 // Функция карты заказов
 function getOrdersMap(orders) {
