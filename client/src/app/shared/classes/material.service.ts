@@ -1,5 +1,5 @@
+import { MaterialInstance } from './../interfaces';
 import { ElementRef, OnInit } from '@angular/core';
-import { MaterialInstance } from '../interfaces';
 // Сервис для работы с materialyze.css
 
 
@@ -11,7 +11,8 @@ declare var M: {
   updateTextFields: any;
   Modal: any;
   Tooltip: any;
-  Datepicker: any
+  Datepicker: any;
+  TapTarget: any;
 };
 
 
@@ -73,6 +74,12 @@ export class MaterialService
             showClearBtn: true,
             onClose
         });
+    }
+
+
+    static initTapTarget(ref: ElementRef): MaterialInstance
+    {
+        return M.TapTarget.init(ref.nativeElement);
     }
 
     

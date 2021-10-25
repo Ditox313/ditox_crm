@@ -5,7 +5,7 @@ const controller = require('../controllers/analytics.js');
 
 
 // Роут на overview
-router.get('/overview', passport.authenticate('jwt', {session: false}), controller.overview);
+router.get('/overview',  controller.overview);
 
 
 // Роут на analytics

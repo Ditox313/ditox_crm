@@ -93,3 +93,20 @@ export interface Filter
 export interface MaterialDatepicker extends MaterialInstance {
   date?: Date;
 }
+
+
+
+// Интерфейс для overview page
+export interface OverviewPage {
+  orders: OverviewPageItem;
+  gain: OverviewPageItem;
+}
+
+
+export interface OverviewPageItem
+{
+    percent: number,
+    compare: number,
+    yesterday: number,
+    isHigher: boolean
+}
