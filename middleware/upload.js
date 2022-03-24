@@ -38,6 +38,9 @@ const fileFilter = function (req, file, cb) {
 
 
 
+
+
+
 // Лимитирование размера
 const limits = {
     fileSize: 1024 * 1024 *5

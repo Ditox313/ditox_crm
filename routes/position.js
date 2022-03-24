@@ -5,18 +5,18 @@ const controller = require('../controllers/position.js');
 
 
 // Роут на getByCategoryId
-router.get('/:categoryId', controller.getByCategoryId);
+router.get('/:categoryId', passport.authenticate('jwt', { session: false }), controller.getByCategoryId);
 
 
 // Роут на create
-router.post('/', passport.authenticate('jwt',{session: false}), controller.create);
+router.post('/', passport.authenticate('jwt', { session: false }), controller.create);
 
 
 // Роут на update
-router.patch('/:id', passport.authenticate('jwt',{session: false}), controller.update);
+router.patch('/:id', passport.authenticate('jwt', { session: false }), controller.update);
 
 
 // Роут на remove
-router.delete('/:id',  passport.authenticate('jwt',{session: false}),  controller.remove );
+router.delete('/:id', passport.authenticate('jwt', { session: false }), controller.remove);
 
 module.exports = router;

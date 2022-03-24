@@ -2,7 +2,7 @@
     <h4>
         <a routerLink="/categories">Категории</a>
         <i class="material-icons">keyboard_arrow_right</i>
-        
+
         <!-- Выводим если добавляем новую категорию -->
         <span *ngIf="isNew; else editcategory ">Добавить категорию</span>
 
@@ -21,8 +21,7 @@
 <div class="row">
     <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="input-field">
-            <input formControlName="name" id="name" type="text"
-            [ngClass]="{'invalid': form.controls['name'].invalid && form.controls['name'].touched}">
+            <input formControlName="name" id="name" type="text" [ngClass]="{'invalid': form.controls['name'].invalid && form.controls['name'].touched}">
             <label for="name">Название</label>
 
             <span class="helper-text red-text" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
@@ -34,9 +33,8 @@
 
         <div>
             <input type="file" class="dn" #input (change)="onFileUpload($event)">
-            
-            <button type="button" class="waves-effect waves-light btn orange lighten-2 mb2"
-            (click)="triggerClick()" [disabled]="form.disabled">
+
+            <button type="button" class="waves-effect waves-light btn orange lighten-2 mb2" (click)="triggerClick()" [disabled]="form.disabled">
                 <i class="material-icons left">backup</i>
                 Загрузить изображение
             </button>
@@ -60,4 +58,4 @@
 
 <!-- Вставляем шаблон с позициями -->
 <!-- Выводим компонент ,если у категории  есть id -->
-<app-positions-form [categoryId]="category._id" *ngIf="category?._id"></app-positions-form>
+<app-positions-form *ngIf="category?._id" [categoryId]="category._id"></app-positions-form>

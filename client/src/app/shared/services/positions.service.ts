@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class PositionsService {
   constructor(private http: HttpClient) {}
 
-  // Получаем список всех категорий
+  // Получаем список всех позиций
   fetch(categoryId: string): Observable<Position[]> {
     return this.http.get<Position[]>(`/api/position/${categoryId}`);
   }
