@@ -29,8 +29,6 @@ export class CategoriesPageComponent implements OnInit {
       // Кладем полученный категрии в переменную
       this.categories = categories;
       this.loading = false;
-
-      // console.log('Категория', categories);
     });
   }
 

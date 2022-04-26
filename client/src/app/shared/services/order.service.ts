@@ -101,7 +101,6 @@ export class OrderService {
   // Создаем новый заказ и отправляем его на сервер
   create(order: Order) : Observable<Order>
   {
-    console.log(order);
     return this.http.post<Order>('/api/order', order);
     
     

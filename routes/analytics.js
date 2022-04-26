@@ -5,10 +5,10 @@ const controller = require('../controllers/analytics.js');
 
 
 // Роут на overview
-router.get('/overview',  controller.overview);
+router.get('/overview', passport.authenticate('jwt', { session: false }), controller.overview);
 
 
 // Роут на analytics
-router.get('/analytics', passport.authenticate('jwt', {session: false}), controller.analytics);
+router.get('/analytics', passport.authenticate('jwt', { session: false }), controller.analytics);
 
 module.exports = router;

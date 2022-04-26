@@ -18,6 +18,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   // Получаем ноду модального окна
   @ViewChild('modal') modalRef: ElementRef | any;
 
+
   // Создаем контейнер для хранения позиций
   positions: Position[] = [];
 
@@ -35,6 +36,12 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   // Проверяем мы добовляем или реактируем позицию
   positionId: string | any = null;
+
+
+
+
+
+  modalTitle: string = '111';
 
 
 
@@ -95,6 +102,8 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   // Редактируем выбранную позицию
   onSelectPosition(position: Position): void
   { 
+    this.modalTitle = 'Редактировать позицию';
+    
     this.positionId = position._id;
 
     this.form.patchValue({
@@ -114,7 +123,8 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   onAddPosition(): void
   {
     this.positionId = null;
-
+    this.modalTitle = 'Добавить позицию';
+    
     this.form.patchValue({
       name: null,
       cost: 1
@@ -171,8 +181,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
     // Если есть id , значит мы редактируем позицию
     if (this.positionId) {
-      newPosition._id = this.positionId;
-
+      newPosition._id = this.positionId;  
       this.positionsService.update(newPosition).subscribe(
         (position) => {
           MaterialService.toast('Изменения сохранены');
@@ -197,6 +206,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     }
     // Иначе мы добавляем новую позицию
     else {
+      this.modalTitle = 'Добавить позицию'
       this.positionsService.create(newPosition).subscribe(
         (position) => {
           MaterialService.toast('Позиция создана');
@@ -217,4 +227,9 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
       );
     }
   }
+
+ 
+
+
+
 }
