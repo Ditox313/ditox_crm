@@ -41,7 +41,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
 
-  modalTitle: string = '111';
+  modalTitle: string = '';
 
 
 
@@ -57,7 +57,19 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // Инициализируем форму
     this.form  = new FormGroup({
       name: new FormControl(null, Validators.required),
-      cost: new FormControl(1, [Validators.required, Validators.min(1)])
+      cost: new FormControl(1, [Validators.required, Validators.min(1)]),
+      cost2: new FormControl(1, [Validators.required, Validators.min(1)]),
+      cost3: new FormControl(1, [Validators.required, Validators.min(1)]),
+      cost4: new FormControl(1, [Validators.required, Validators.min(1)]),
+      cost5: new FormControl(1, [Validators.required, Validators.min(1)]),
+      dopWash: new FormControl(1, [ Validators.min(1)]),
+      dopPetrol: new FormControl(1, [ Validators.min(1)]),
+      dopKindPlace: new FormControl(1, [ Validators.min(1)]),
+      dopBuster: new FormControl(1, [ Validators.min(1)]),
+      dopBattery: new FormControl(1, [ Validators.min(1)]),
+      dopAux: new FormControl(1, [ Validators.min(1)]),
+      dopVideo: new FormControl(1, [ Validators.min(1)]),
+      dopAntiradar: new FormControl(1, [ Validators.min(1)]),
     })
 
 
@@ -108,7 +120,19 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.form.patchValue({
       name: position.name,
-      cost: position.cost
+      cost: position.cost,
+      cost2: position.cost2,
+      cost3: position.cost3,
+      cost4: position.cost4,
+      cost5: position.cost5,
+      dopWash: position.dopWash,
+      dopPetrol: position.dopPetrol,
+      dopKindPlace: position.dopKindPlace,
+      dopBuster: position.dopBuster,
+      dopBattery: position.dopBattery,
+      dopAux: position.dopAux,
+      dopVideo: position.dopVideo,
+      dopAntiradar: position.dopAntiradar,
     });
     this.modal.open();
     MaterialService.updateTextInputs();
@@ -127,7 +151,20 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     
     this.form.patchValue({
       name: null,
-      cost: 1
+      cost: 1,
+      cost2: 1,
+      cost3: 1,
+      cost4: 1,
+      cost5: 1,
+      dopWash: '',
+      dopPetrol: '',
+      dopKindPlace: '',
+      dopBuster: '',
+      dopBattery: '',
+      dopAux: '',
+      dopVideo: '',
+      dopAntiradar: '',
+
     });
     this.modal.open();
     MaterialService.updateTextInputs();
@@ -174,6 +211,18 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     const newPosition: Position | any = {
       name: this.form.value.name,
       cost: this.form.value.cost,
+      cost2: this.form.value.cost2,
+      cost3: this.form.value.cost3,
+      cost4: this.form.value.cost4,
+      cost5: this.form.value.cost5,
+      dopWash: this.form.value.dopWash,
+      dopPetrol: this.form.value.dopPetrol,
+      dopKindPlace: this.form.value.dopKindPlace,
+      dopBuster: this.form.value.dopBuster,
+      dopBattery: this.form.value.dopBattery,
+      dopAux: this.form.value.dopAux,
+      dopVideo: this.form.value.dopVideo,
+      dopAntiradar: this.form.value.dopAntiradar,
       category: this.categoryId
     };
 
@@ -199,6 +248,19 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
           this.form.reset({
             name: '',
             cost: 1,
+            cost2: 1,
+            cost3: 1,
+            cost4: 1,
+            cost5: 1,
+            dopWash: '',
+            dopPetrol: '',
+            dopKindPlace: '',
+            dopBuster: '',
+            dopBattery: '',
+            dopAux: '',
+            cosdopVideot5: '',
+            dopAntiradar: '',
+
           });
           this.form.enable();
         }
@@ -221,6 +283,18 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
           this.form.reset({
             name: '',
             cost: 1,
+            cost2: 1,
+            cost3: 1,
+            cost4: 1,
+            cost5: 1,
+            dopWash: '',
+            dopPetrol: '',
+            dopKindPlace: '',
+            dopBuster: '',
+            dopBattery: '',
+            dopAux: '',
+            dopVideo: '',
+            dopAntiradar: '',
           });
           this.form.enable();
         }

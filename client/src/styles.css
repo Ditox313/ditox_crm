@@ -1,22 +1,28 @@
 /* Стили Materialize */
+
 @import "~materialize-css/dist/css/materialize.min.css";
 
 /* Стили верстки */
+
 @import "theme/styles/styles.min.css";
 
-
 /* Кастомный код */
-.dn
-{
+
+.dn {
     display: none;
 }
 
-.h200
-{
+.h200 {
     height: 200px;
 }
 
-.modal h1, .modal h2, .modal h3, .modal h4
-{
+.modal h1,
+.modal h2,
+.modal h3,
+.modal h4 {
     margin-bottom: 30px;
+}
+
+.xs_position_dop_title {
+    margin-top: 15px;
 }

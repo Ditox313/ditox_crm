@@ -11,7 +11,8 @@
             <div class="collection" *ngIf="positions.length !== 0; else empty">
                 <a class="collection-item collection-item-icon" *ngFor="let position of positions" (click)="onSelectPosition(position)">
                     <span>
-                        {{position.name}} <strong>{{position.cost}} руб.</strong>
+                        {{position.name}} 
+                        <!-- <strong>{{position.cost}} руб.</strong> -->
                     </span>
                     <span (click)="onDeletePosition($event, position)">
                         <i class="material-icons">delete</i>
@@ -44,7 +45,7 @@
             <h4 class="mb1">{{modalTitle}}</h4>
             <div class="input-field">
                 <input id="pos-name" type="text" formControlName="name" [ngClass]="{'invalid': form.controls['name'].invalid && form.controls['name'].touched}">
-                <label for="pos-name">Название</label>
+                <label for="pos-name">Марка автомобиля</label>
                 <span class="helper-text red-text" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
                     <span *ngIf="form.controls['name'].errors?.required">
                         Название не может быть пустым
@@ -53,10 +54,139 @@
             </div>
             <div class="input-field">
                 <input id="pos-cost" type="number" min="1" formControlName="cost" [ngClass]="{'invalid': form.controls['cost'].invalid && form.controls['cost'].touched}">
-                <label for="pos-name">Цена</label>
+                <label for="pos-name">Цена(1-2 дня)</label>
                 <span class="helper-text red-text" *ngIf="form.controls['cost'].invalid && form.controls['cost'].touched">
                     <span *ngIf="form.controls['cost'].errors?.required">
                         Цена  не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+            <div class="input-field">
+                <input id="pos-cost2" type="number" min="1" formControlName="cost2" [ngClass]="{'invalid': form.controls['cost2'].invalid && form.controls['cost2'].touched}">
+                <label for="pos-name">Цена(3-7 дней)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['cost2'].invalid && form.controls['cost2'].touched">
+                    <span *ngIf="form.controls['cost2'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-cost3" type="number" min="1" formControlName="cost3" [ngClass]="{'invalid': form.controls['cost3'].invalid && form.controls['cost3'].touched}">
+                <label for="pos-name">Цена(8-14 дней)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['cost3'].invalid && form.controls['cost3'].touched">
+                    <span *ngIf="form.controls['cost3'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-cost4" type="number" min="1" formControlName="cost4" [ngClass]="{'invalid': form.controls['cost4'].invalid && form.controls['cost4'].touched}">
+                <label for="pos-name">Цена(15-30 дней)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['cost4'].invalid && form.controls['cost4'].touched">
+                    <span *ngIf="form.controls['cost4'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-cost5" type="number" min="1" formControlName="cost5" [ngClass]="{'invalid': form.controls['cost5'].invalid && form.controls['cost5'].touched}">
+                <label for="pos-name">Цена(Межгород)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['cost5'].invalid && form.controls['cost5'].touched">
+                    <span *ngIf="form.controls['cost5'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <h4 class="xs_position_dop_title">Дополнительные услуги</h4>
+            <div class="input-field">
+                <input id="pos-dopWash" type="number" min="1" formControlName="dopWash" [ngClass]="{'invalid': form.controls['dopWash'].invalid && form.controls['dopWash'].touched}">
+                <label for="pos-name">Цена(Мойка автомобиля)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopWash'].invalid && form.controls['dopWash'].touched">
+                    <span *ngIf="form.controls['dopWash'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-dopPetrol" type="number" min="1" formControlName="dopPetrol" [ngClass]="{'invalid': form.controls['dopPetrol'].invalid && form.controls['dopPetrol'].touched}">
+                <label for="pos-name">Цена(Дозаправка автомобиля)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopPetrol'].invalid && form.controls['dopPetrol'].touched">
+                    <span *ngIf="form.controls['dopPetrol'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-dopKindPlace" type="number" min="1" formControlName="dopKindPlace" [ngClass]="{'invalid': form.controls['dopKindPlace'].invalid && form.controls['dopKindPlace'].touched}">
+                <label for="pos-name">Цена(Детское кресло)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopKindPlace'].invalid && form.controls['dopKindPlace'].touched">
+                    <span *ngIf="form.controls['dopKindPlace'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-dopBuster" type="number" min="1" formControlName="dopBuster" [ngClass]="{'invalid': form.controls['dopBuster'].invalid && form.controls['dopBuster'].touched}">
+                <label for="pos-name">Цена(Бустер)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopBuster'].invalid && form.controls['dopBuster'].touched">
+                    <span *ngIf="form.controls['dopBuster'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+
+            <div class="input-field">
+                <input id="pos-dopBattery" type="number" min="1" formControlName="dopBattery" [ngClass]="{'invalid': form.controls['dopBattery'].invalid && form.controls['dopBattery'].touched}">
+                <label for="pos-name">Цена(Зарядное устройство)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopBattery'].invalid && form.controls['dopBattery'].touched">
+                    <span *ngIf="form.controls['dopBattery'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+            <div class="input-field">
+                <input id="pos-dopAux" type="number" min="1" formControlName="dopAux" [ngClass]="{'invalid': form.controls['dopAux'].invalid && form.controls['dopAux'].touched}">
+                <label for="pos-name">Цена(Кабель AUX)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopAux'].invalid && form.controls['dopAux'].touched">
+                    <span *ngIf="form.controls['dopAux'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+            <div class="input-field">
+                <input id="pos-dopVideo" type="number" min="1" formControlName="dopVideo" [ngClass]="{'invalid': form.controls['dopVideo'].invalid && form.controls['dopVideo'].touched}">
+                <label for="pos-name">Цена(Видеорегистратор)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopVideo'].invalid && form.controls['dopVideo'].touched">
+                    <span *ngIf="form.controls['dopVideo'].errors?.required">
+                        Цена не может быть пустой
+                    </span>
+                </span>
+            </div>
+
+            <div class="input-field">
+                <input id="pos-dopAntiradar" type="number" min="1" formControlName="dopAntiradar" [ngClass]="{'invalid': form.controls['dopAntiradar'].invalid && form.controls['dopAntiradar'].touched}">
+                <label for="pos-name">Цена(Антирадар)</label>
+                <span class="helper-text red-text" *ngIf="form.controls['dopAntiradar'].invalid && form.controls['dopAntiradar'].touched">
+                    <span *ngIf="form.controls['dopAntiradar'].errors?.required">
+                        Цена не может быть пустой
                     </span>
                 </span>
             </div>
